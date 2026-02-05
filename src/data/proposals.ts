@@ -82,7 +82,6 @@ export interface ComparisonRow {
 export interface Proposal {
   slug: string;
   title: string;
-  travelerName?: string;
   destinations: Destination[];
   combinedRoutes: CombinedRoute[];
   comparisonTable: ComparisonRow[];
@@ -92,7 +91,6 @@ export const proposals: Proposal[] = [
   {
     slug: 'parana-trip',
     title: 'Experiências no Paraná',
-    travelerName: 'Monica!',
     destinations: [
       {
         name: 'Ilha do Mel',

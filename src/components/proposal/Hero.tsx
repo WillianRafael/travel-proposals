@@ -3,14 +3,12 @@
 import React from "react";
 
 interface HeroProps {
-  travelerName: string;
   title?: string;        // opcional: título da proposta
   subtitle?: string;     // opcional: linha menor (ex: "Janeiro 2026")
   ctaLabel?: string;     // opcional: texto do botão
 }
 
 export default function Hero({
-  travelerName,
   title = "Experiência Premium",
   subtitle = "Fevereiro 2026",
   ctaLabel = "Ver o roteiro completo",
