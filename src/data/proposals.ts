@@ -319,7 +319,7 @@ export const proposals: Proposal[] = [
           'Calor e Humidade: fevereiro é muito quente e húmido; ar condicionado no quarto é quase um item de sobrevivência.',
           'Gastronomia: o barreado é obrigatório. Muitos restaurantes no centro histórico fecham cedo (por volta das 16h/17h); planeje os jantares com antecedência.',
           'Acesso: se vier de Curitiba, pode ir pela Estrada da Graciosa (linda, mas sinuosa) ou de comboio (Serra Verde Express), que é uma experiência romântica clássica.',
-          'Insetos: por estar no pé da serra, há muitos mosquitos — leve repelente forte.',
+          'Insetos: por estar no pé da serra, há muitos mosquitos, leve repelente forte.',
           'Trajeto: pela Estrada da Graciosa a distância é similar, mas o tempo pode aumentar para ~1h45 devido às curvas e redução de velocidade.',
         ],
         costs: [
@@ -406,7 +406,7 @@ export const proposals: Proposal[] = [
           'Estrutura de apoio na Fazenda Rio das Pedras facilita aproveitar a natureza com conforto básico',
         ],
         cons: [
-          'Clima de Montanha: mesmo no verão, as noites podem ser frescas — leve um casaco leve.',
+          'Clima de Montanha: mesmo no verão, as noites podem ser frescas, leve um casaco leve.',
           'Atividades: a região é famosa pela subida do Pico do Paraná, passeios de barco na represa e pesca.',
           'Acesso: principalmente pela BR-116; embora seja o destino mais próximo em linha reta, o tempo pode variar bastante dependendo do fluxo de caminhões na rodovia. A maioria das pousadas exige alguns quilômetros de estrada de terra.',
           'Alimentação: muitas pousadas/resorts oferecem jantar; caso contrário será necessário deslocar-se até o centro de Campina Grande do Sul.',

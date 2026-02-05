@@ -43,14 +43,15 @@ export default function ProposalPage({ params }: PageProps) {
   if (!proposal) {
     notFound();
   }
+  // At this point, proposal is guaranteed to exist (not undefined)
   return (
     <div className="flex flex-col min-h-screen pb-32 sm:pb-0">
-      <Hero travelerName={proposal.travelerName || 'Viajante'} title={proposal.title} />
+      <Hero travelerName={proposal.travelerName ?? 'Viajante'} title={proposal.title} />
 
       <section id="destinos" className="w-full px-0 py-8">
         <div className="px-0">
           <DestinationTabs
-            destinations={proposal!.destinations}
+            destinations={proposal.destinations}
           />
         </div>
       </section>
