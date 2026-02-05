@@ -76,6 +76,19 @@ export default function DestinationPanel({ destination }: DestinationPanelProps)
             </ul>
           </AccordionItem>
 
+          {destination.practicalPlanning && destination.practicalPlanning.length > 0 && (
+            <AccordionItem title="Planejamento prático (importante ler antes de ir)">
+              <div className="space-y-4 text-black/80">
+                {destination.practicalPlanning.map((section, idx) => (
+                  <div key={idx}>
+                    <h5 className="font-semibold mb-2">{section.title}</h5>
+                    <p className="text-sm whitespace-pre-line">{section.content}</p>
+                  </div>
+                ))}
+              </div>
+            </AccordionItem>
+          )}
+
           <AccordionItem title="Itinerário sugerido">
             <ul className="list-disc pl-5 space-y-1 text-black/80">
               {destination.itineraryDays.map((dayObj, idx) => (

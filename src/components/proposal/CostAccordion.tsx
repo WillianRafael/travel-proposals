@@ -55,6 +55,23 @@ export default function CostAccordion({ costs }: CostAccordionProps) {
             </ul>
           </AccordionItem>
         )}
+
+        {costs.additionalCosts && costs.additionalCosts.length > 0 && (
+          <AccordionItem title="Custos adicionais a considerar" defaultOpen={false}>
+            <div className="space-y-3 text-black/80">
+              <ul className="list-disc pl-5 space-y-2">
+                {costs.additionalCosts.map((item, idx) => (
+                  <li key={idx} className="text-sm sm:text-base">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-xs italic text-black/60 pt-2">
+                Valores aproximados, sujeitos a variação conforme temporada e demanda.
+              </p>
+            </div>
+          </AccordionItem>
+        )}
       </div>
     </div>
   );

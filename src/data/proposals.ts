@@ -3,6 +3,11 @@ export interface ItineraryDay {
   description: string;
 }
 
+export interface PracticalPlanningSection {
+  title: string;
+  content: string;
+}
+
 export type StayTier = "economica" | "conforto" | "premium";
 
 export interface StayOption {
@@ -31,6 +36,7 @@ export interface CostBreakdown {
   lodging: string[];
   food: string[];
   paidTours?: string[];
+  additionalCosts?: string[];
 }
 
 export interface Destination {
@@ -58,6 +64,8 @@ export interface Destination {
   tripSummary: TripSummary;
   /** Detalhamento dos custos */
   costBreakdown: CostBreakdown;
+  /** Planejamento prático com subsections */
+  practicalPlanning?: PracticalPlanningSection[];
 }
 
 export interface CombinedRoute {
@@ -74,7 +82,7 @@ export interface ComparisonRow {
 export interface Proposal {
   slug: string;
   title: string;
-  travelerName: string;
+  travelerName?: string;
   destinations: Destination[];
   combinedRoutes: CombinedRoute[];
   comparisonTable: ComparisonRow[];
@@ -101,9 +109,11 @@ export const proposals: Proposal[] = [
           'Contato direto com a Mata Atlântica com noites estreladas, ideal para quem busca desconexão',
         ],
         cons: [
-          'Infraestrutura simples; não há vias pavimentadas nem iluminação pública【258520958787201†L161-L167】',
-          'Verão é chuvoso e úmido【258520958787201†L420-L433】',
-          'Serviços e acomodações podem ser mais caros pela limitação de oferta',
+          'A ilha exige planejamento prévio: não há circulação de veículos e o deslocamento entre vilas depende de trilhas ou barco-táxi',
+          'A escolha da vila (Brasília ou Encantadas) impacta bastante a experiência e a logística da viagem',
+          'Infraestrutura simples, sem iluminação pública e com sinal de internet instável',
+          'Em períodos de chuva, trilhas podem ficar escorregadias e mais cansativas',
+          'Trajeto: ~120 km até o terminal de embarque em Pontal do Sul; ~2h de carro (não inclui travessia de barco, que leva ~30 min).',
         ],
         costs: [
           'Barco ida e volta a partir de Pontal do Paraná ou Paranaguá (~R$40 por pessoa)',
@@ -126,52 +136,80 @@ export const proposals: Proposal[] = [
             description:
               'Dia livre nas praias (Brasília, Fora ou Encantadas) e retorno à tarde de barco.',
           },
+        ],
+        practicalPlanning: [
+          {
+            title: '📍 Escolha do trapiche e da vila',
+            content: 'A Ilha do Mel possui duas vilas principais, e a escolha influencia diretamente o deslocamento e a experiência.\n\nBrasília: mais tranquila, próxima ao Farol e à Fortaleza, com maior oferta de pousadas confortáveis\n\nEncantadas: mais movimentada, com bares, público jovem e a Gruta das Encantadas\n\n⚠️ Importante: confirme em qual vila fica sua hospedagem antes de embarcar. Não há transporte terrestre entre elas; a travessia é feita por trilha ou barco-táxi.',
+          },
+          {
+            title: '🎒 Bagagem e deslocamento',
+            content: 'Evite malas de rodinha: não há pavimentação e o trajeto é feito por areia ou trilhas\n\nPrefira mochilas ou malas fáceis de carregar\n\nHá carregadores de malas nos trapiches (serviço pago; combine o valor antes)',
+          },
+          {
+            title: '🧭 O que levar',
+            content: 'Lanterna (essencial, pois não há iluminação pública à noite)\n\nRepelente forte, especialmente contra borrachudos\n\nDinheiro em espécie, já que o sinal de internet pode oscilar e não há caixas eletrônicos\n\nCapa de chuva e calçado adequado para trilhas',
+          },
+          {
+            title: '🚗 Carro e travessia',
+            content: 'Pontal do Sul: travessia mais curta (cerca de 30 min) e saídas frequentes\n\nParanaguá: travessia mais longa (cerca de 1h30) e menos horários\n\nEm Pontal do Sul, prefira estacionamentos fechados e com seguro.',
+          },
+          {
+            title: '🩺 Clima e saúde',
+            content: 'O verão é chuvoso; capa de chuva faz diferença no conforto\n\nLeve uma farmácia básica com medicamentos pessoais\n\nA ilha possui apenas atendimento de saúde simples para emergências',
+          },
         ],        stayOptions: [
           {
-            name: 'Hospedaria da Praia',
-            type: 'Hospedaria',
-            highlight: 'Simples, próxima à praia',
-            rating: 3,
-            pricePerNight: 150,
+            name: 'Pousada do Clodo',
+            type: 'Pousada',
+            highlight: 'Uma excelente escolha para casais que querem economizar sem abrir mão de uma boa avaliação.',
+            rating: 4.6,
+            pricePerNight: 281,
             priceNote: 'casal',
-            images: ['/images/ilha-do-mel/hero.jpg'],
+            images: ['/images/ilha-do-mel/pousada-do-clodo.jpg'],
             tier: 'economica',
           },
           {
-            name: 'Pousada do Farol',
+            name: 'Pousada Villa Encantada Ilha Do Mel',
             type: 'Pousada',
-            highlight: 'Charmosa e próxima à trilha',
-            rating: 4,
-            pricePerNight: 280,
+            highlight: 'Subindo um pouco o nível, esta pousada tem um clima super romântico e nota quase máxima.',
+            rating: 4.9,
+            pricePerNight: 600,
             priceNote: 'casal',
-            images: ['/images/ilha-do-mel/hero.jpg'],
+            images: ['/images/ilha-do-mel/pousada-villa-encantada.jpg'],
             tier: 'conforto',
           },
           {
-            name: 'Chalé Recanto',
-            type: 'Chalé',
-            highlight: 'Natureza, privacidade e sossego',
+            name: 'Pousada Praia do Farol',
+            type: 'Pousada',
+            highlight: 'Para uma experiência mais completa à beira-mar e com infraestrutura superior.',
             rating: 5,
-            pricePerNight: 390,
+            pricePerNight: 704,
             priceNote: 'casal',
-            images: ['/images/ilha-do-mel/hero.jpg'],
+            images: ['/images/ilha-do-mel/pousada-praia-do-farol.jpg'],
             tier: 'premium',
           },
         ],
         tripSummary: {
           days: 3,
-          nights: 2,
+          nights: 3,
           peopleLabel: 'Casal',
           destinationLabel: 'Ilha do Mel',
-          estimateMin: 2100,
-          estimateMax: 2400,
+          estimateMin: 3115,
+          estimateMax: 3420,
           disclaimer: 'Valores estimados; variam conforme datas e disponibilidade.',
         },
         costBreakdown: {
           transport: ['Barco ida e volta (2 pessoas): ~R$ 160'],
-          lodging: ['2 noites (casal): ~R$ 560 a R$ 780'],
+          lodging: ['3 noites (casal): ~R$ 843 a R$ 2.113'],
           food: ['Média por dia (casal): ~R$ 220 a R$ 320'],
           paidTours: ['Passeios pagos (opcional): ~R$ 0 a R$ 200'],
+          additionalCosts: [
+            'Estacionamento em Pontal do Sul: R$ 30 a R$ 50 / diária',
+            'Barco (ida e volta): R$ 45 a R$ 60 / pessoa',
+            'Carregador de malas (opcional): R$ 30 a R$ 60 / carrinho',
+            'Barco-táxi entre vilas (opcional): R$ 20 a R$ 40',
+          ],
         },      },
       {
         name: 'Matinhos',
@@ -187,9 +225,11 @@ export const proposals: Proposal[] = [
           'Perto de outras atrações do litoral paranaense, permitindo extensões de viagem',
         ],
         cons: [
-          'Durante a alta temporada, a cidade pode ficar mais movimentada',
-          'Menos opções de trilhas e natureza preservada em comparação à Ilha do Mel',
-          'Experiência mais urbana do que rústica ou isolada',
+          'Trânsito: Fevereiro ainda é época de movimento. A Avenida Beira-Mar costuma ficar lenta, então estar bem localizado ajuda a fazer coisas a pé.',
+          'Orla Nova: Matinhos passou por uma grande revitalização da orla. A praia está com uma faixa de areia muito maior e novos calçadões, ótimos para caminhar à noite.',
+          'Caiobá: É a zona "nobre". Se procuram os melhores restaurantes e a praia mais badalada (Praia Brava), foquem na Villa Caiobá.',
+          'Abastecimento: Ao contrário da ilha, aqui você encontra supermercados grandes, farmácias 24h e vários postos de gasolina.',
+          'Trajeto: Com a conclusão da nova orla e a duplicação da Alexandra–Matinhos, o acesso está muito rápido; em finais de semana de sol o tempo de viagem pode dobrar devido ao movimento.',
         ],
         costs: [
           'Transporte rodoviário a partir de Curitiba (~R$30–60 dependendo do modal)',
@@ -214,48 +254,50 @@ export const proposals: Proposal[] = [
         ],
         stayOptions: [
           {
-            name: 'Pousada Beira Mar',
+            name: 'Pousada Encantadas',
             type: 'Pousada',
-            highlight: 'Acessível e bem localizada',
-            rating: 3,
-            pricePerNight: 120,
+            highlight: 'Embora tenha o mesmo nome da vila na ilha, fica em Matinhos e é uma excelente escolha para poupar; muito bem avaliada por limpeza e custo-benefício.',
+            rating: 4.6,
+            pricePerNight: 230,
             priceNote: 'casal',
-            images: ['/images/matinhos/hero.jpg'],
+            images: ['/images/matinhos/pousada-encantadas-matinhos.jpg'],
             tier: 'economica',
           },
           {
-            name: 'Pousada Marina',
+            name: 'Villa Caiobá Pousada',
             type: 'Pousada',
-            highlight: 'Próxima à praia, ambiente aconchegante',
-            rating: 4,
-            pricePerNight: 200,
+            highlight: 'Localizada em Caiobá, ambiente charmoso e acolhedor para casais, próxima à Praia de Caiobá.',
+            rating: 4.8,
+            pricePerNight: 568,
             priceNote: 'casal',
-            images: ['/images/matinhos/hero.jpg'],
+            images: ['/images/matinhos/villa-caioba-pousada.jpg'],
             tier: 'conforto',
           },
           {
-            name: 'Resort Litoral',
-            type: 'Resort',
-            highlight: 'Completo com piscina e spa',
-            rating: 5,
-            pricePerNight: 350,
+            name: 'Hotel Praia e Sol',
+            type: 'Hotel',
+            highlight: 'Hotel tradicional com buffet de café da manhã completo, recepção 24h e Wi-Fi gratuito.',
+            rating: 4.7,
+            pricePerNight: 567,
             priceNote: 'casal',
-            images: ['/images/matinhos/hero.jpg'],
+            images: ['/images/matinhos/hotel-praia-e-sol.jpg'],
             tier: 'premium',
           },
         ],
         tripSummary: {
           days: 3,
-          nights: 2,
+          nights: 3,
           peopleLabel: 'Casal',
           destinationLabel: 'Matinhos',
-          estimateMin: 800,
-          estimateMax: 1000,
+          estimateMin: 1260,
+          estimateMax: 2475,
           disclaimer: 'Valores estimados; variam conforme datas e disponibilidade.',
         },
         costBreakdown: {
           transport: ['Transporte rodoviário (casal): ~R$ 120'],
-          lodging: ['2 noites (casal): ~R$ 400 a R$ 700'],
+          lodging: [
+            '3 noites (casal): ~R$ 690 (Pousada Encantadas) a R$ 1.705 (Villa Caiobá); Hotel Praia e Sol: R$ 1.701',
+          ],
           food: ['Refeições (casal): ~R$ 450 a R$ 650'],
           paidTours: ['Aula de surf (opcional): ~R$ 100'],
         },      },
@@ -274,9 +316,11 @@ export const proposals: Proposal[] = [
           'Proximidade de trilhas, rios e montanhas, ideal para quem quer intercalar cultura e natureza',
         ],
         cons: [
-          'Finais de semana e feriados costumam ser mais movimentados',
-          'Clima instável, com possibilidade de chuvas frequentes',
-          'Vida noturna discreta, com opções concentradas durante o dia',
+          'Calor e Humidade: fevereiro é muito quente e húmido; ar condicionado no quarto é quase um item de sobrevivência.',
+          'Gastronomia: o barreado é obrigatório. Muitos restaurantes no centro histórico fecham cedo (por volta das 16h/17h); planeje os jantares com antecedência.',
+          'Acesso: se vier de Curitiba, pode ir pela Estrada da Graciosa (linda, mas sinuosa) ou de comboio (Serra Verde Express), que é uma experiência romântica clássica.',
+          'Insetos: por estar no pé da serra, há muitos mosquitos — leve repelente forte.',
+          'Trajeto: pela Estrada da Graciosa a distância é similar, mas o tempo pode aumentar para ~1h45 devido às curvas e redução de velocidade.',
         ],
         costs: [
           'Passagem do trem (classe econômica, turística ou executiva) varia de R$80 a R$200',
@@ -299,50 +343,51 @@ export const proposals: Proposal[] = [
             description:
               'Dia reservado para uma atividade mais ativa, como trilhas na região do Pico do Marumbi, ou visita à cidade vizinha de Antonina. Retorno a Curitiba no fim da tarde.',
           },
-        ],        stayOptions: [
+        ],
+        stayOptions: [
           {
-            name: 'Hospedaria Centro',
-            type: 'Hospedaria',
-            highlight: 'Simples e central',
-            rating: 3,
-            pricePerNight: 100,
+            name: 'Sítio Pousada Ancestral',
+            type: 'Pousada',
+            highlight: 'Ideal para quem quer total contacto com a natureza e tranquilidade, lugar rústico integrado na Serra do Mar.',
+            rating: 4.9,
+            pricePerNight: 236,
             priceNote: 'casal',
-            images: ['/images/morretes/hero.jpg'],
+            images: ['/images/morretes/sitio-pousada-ancestral.jpg'],
             tier: 'economica',
           },
           {
-            name: 'Pousada Histórica',
+            name: 'Pousada das Laranjeiras',
             type: 'Pousada',
-            highlight: 'Centro histórico, estilo colonial',
-            rating: 4,
-            pricePerNight: 220,
+            highlight: 'Charmosa e colorida, com piscina externa, jardim agradável e buffet de pequeno-almoço elogiado.',
+            rating: 4.6,
+            pricePerNight: 355,
             priceNote: 'casal',
-            images: ['/images/morretes/hero.jpg'],
+            images: ['/images/morretes/pousada-das-laranjeiras.jpg'],
             tier: 'conforto',
           },
           {
-            name: 'Chalé Montanha',
-            type: 'Chalé',
-            highlight: 'Vista para os morros, privacidade total',
-            rating: 5,
-            pricePerNight: 320,
+            name: 'Pousada do Oasis',
+            type: 'Pousada',
+            highlight: 'Cabanas rústicas com privacidade, lazer completo, piscina e restaurante próprio.',
+            rating: 4.5,
+            pricePerNight: 450,
             priceNote: 'casal',
-            images: ['/images/morretes/hero.jpg'],
+            images: ['/images/morretes/pousada-do-oasis.jpg'],
             tier: 'premium',
           },
         ],
         tripSummary: {
           days: 3,
-          nights: 2,
+          nights: 3,
           peopleLabel: 'Casal',
           destinationLabel: 'Morretes',
-          estimateMin: 1200,
-          estimateMax: 1600,
+          estimateMin: 1268,
+          estimateMax: 2210,
           disclaimer: 'Valores estimados; variam conforme datas e disponibilidade.',
         },
         costBreakdown: {
           transport: ['Trem Serra Verde Express (ida e volta): ~R$ 160'],
-          lodging: ['2 noites (casal): ~R$ 440 a R$ 640'],
+          lodging: ['3 noites (casal): ~R$ 708 (Sítio Pousada Ancestral) a R$ 1.350 (Pousada do Oasis); Pousada das Laranjeiras: R$ 1.065'],
           food: ['Refeições com barreado: ~R$ 400 a R$ 600'],
           paidTours: ['Museus e passeios locais: ~R$ 0 a R$ 100'],
         },      },
@@ -361,9 +406,10 @@ export const proposals: Proposal[] = [
           'Estrutura de apoio na Fazenda Rio das Pedras facilita aproveitar a natureza com conforto básico',
         ],
         cons: [
-          'Acesso inclui cerca de 6 km de estrada de chão até a fazenda',
-          'Região mais isolada, com pouca sinalização e poucos serviços no entorno',
-          'Mudanças rápidas de clima são comuns na serra\n\nEsse é um destino que funciona melhor para quem gosta de lugares menos movimentados e está confortável com logística simples.',
+          'Clima de Montanha: mesmo no verão, as noites podem ser frescas — leve um casaco leve.',
+          'Atividades: a região é famosa pela subida do Pico do Paraná, passeios de barco na represa e pesca.',
+          'Acesso: principalmente pela BR-116; embora seja o destino mais próximo em linha reta, o tempo pode variar bastante dependendo do fluxo de caminhões na rodovia. A maioria das pousadas exige alguns quilômetros de estrada de terra.',
+          'Alimentação: muitas pousadas/resorts oferecem jantar; caso contrário será necessário deslocar-se até o centro de Campina Grande do Sul.',
         ],
         itineraryDays: [
           {
@@ -383,56 +429,56 @@ export const proposals: Proposal[] = [
           },
         ],        stayOptions: [
           {
-            name: 'Camping Represa',
-            type: 'Camping',
-            highlight: 'Natureza, infraestrutura básica',
-            rating: 3,
-            pricePerNight: 80,
+            name: 'Mata Atlântica Aventura Hotel Fazenda',
+            type: 'Hotel Fazenda',
+            highlight: 'Opção rústica voltada para eco-turismo, ideal para trilhas e contato com a natureza.',
+            rating: 4,
+            pricePerNight: 254,
             priceNote: 'casal',
-            images: ['/images/capivari/hero.jpg'],
+            images: ['/images/capivari/mata-atlantica-aventura-hotel-fazenda.jpg'],
             tier: 'economica',
           },
           {
-            name: 'Fazenda Rio das Pedras',
+            name: 'Villa Estoril - Chalés',
             type: 'Chalé',
-            highlight: 'Contato direto com natureza, rio e cachoeira',
-            rating: 4,
-            pricePerNight: 250,
+            highlight: 'Chalés focados em casais, modernos e privativos, com vista para a represa.',
+            rating: 5,
+            pricePerNight: 599,
             priceNote: 'casal',
-            images: ['/images/capivari/hero.jpg'],
+            images: ['/images/capivari/villa-estoril-chales.jpg'],
             tier: 'conforto',
           },
           {
-            name: 'Pousada Serra Premium',
-            type: 'Pousada',
-            highlight: 'Vista panorâmica, comodidades premium',
+            name: 'Capivari Ecoresort',
+            type: 'Resort',
+            highlight: 'Resort à beira da represa com piscinas, spa e estrutura completa de lazer.',
             rating: 5,
-            pricePerNight: 380,
+            pricePerNight: 984,
             priceNote: 'casal',
-            images: ['/images/capivari/hero.jpg'],
+            images: ['/images/capivari/capivari-ecoresort.jpg'],
             tier: 'premium',
           },
         ],
         tripSummary: {
           days: 3,
-          nights: 2,
+          nights: 3,
           peopleLabel: 'Casal',
           destinationLabel: 'Capivari',
-          estimateMin: 1600,
-          estimateMax: 1900,
+          estimateMin: 1331,
+          estimateMax: 3523,
           disclaimer: 'Valores estimados; variam conforme datas e disponibilidade.',
         },
         costBreakdown: {
           transport: ['Combustível e estrada: ~R$ 150'],
-          lodging: ['2 noites (casal): ~R$ 500 a R$ 760'],
+          lodging: ['3 noites (casal): ~R$ 761 (Mata Atlântica Aventura) a R$ 2.953 (Capivari Ecoresort); Villa Estoril: R$ 1.797'],
           food: ['Refeições (casal): ~R$ 300 a R$ 400'],
-          paidTours: ['Caiaque ou stand-up paddle: ~R$ 100 a R$ 200'],
+          paidTours: ['Passeios: subida ao Pico do Paraná, passeios de barco e pesca: ~R$ 100 a R$ 400'],
         },
         costs: [
           'Combustível e estrada: ~R$ 150',
-          'Hospedagem: ~R$ 500 a R$ 760 (2 noites)',
+          'Hospedagem: ~R$ 761 a R$ 2.953 (3 noites)',
           'Alimentação: ~R$ 300 a R$ 400',
-          'Atividades (caiaque/paddle): ~R$ 100 a R$ 200',
+          'Atividades (pico, barco, pesca): ~R$ 100 a R$ 400',
         ],
       },
     ],

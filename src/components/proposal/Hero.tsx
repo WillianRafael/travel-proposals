@@ -44,24 +44,10 @@ export default function Hero({
             Uma viagem pensada nos mínimos detalhes para você.
           </p>
 
-          {/* Desktop only: saudação menor */}
-          <p className="hidden sm:block text-white/85 text-lg mb-2">
-            Olá, {travelerName}!
-          </p>
-
           {/* Desktop only: data bem discreta */}
           <p className="hidden sm:block text-[11px] tracking-[0.25em] uppercase text-white/70 mb-3">
             {subtitle}
           </p>
-
-          <div className="pt-3">
-            <button
-              onClick={onScrollToDestinos}
-              className="mt-8 inline-flex items-center justify-center rounded-full px-10 py-4 font-semibold text-black bg-amber-500 hover:bg-amber-600 shadow-xl transition"
-            >
-              {ctaLabel}
-            </button>
-          </div>
         </div>
       </div>
     </section>
