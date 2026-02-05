@@ -45,7 +45,7 @@ export default function ProposalPage({ params }: PageProps) {
   }
   return (
     <div className="flex flex-col min-h-screen pb-32 sm:pb-0">
-      <Hero travelerName={proposal.travelerName} title={proposal.title} />
+      <Hero travelerName={proposal.travelerName || 'Viajante'} title={proposal.title} />
 
       <section id="destinos" className="w-full px-0 py-8">
         <div className="px-0">
